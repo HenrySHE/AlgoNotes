@@ -66,7 +66,7 @@ public class TestAlgo {
 
 -----
 ## 题目1470：重新排列数组
-日期: 2020-7-15 [LeetCode #1470](https://leetcode-cn.com/problems/shuffle-the-array/)
+日期: 2020-7-21 [LeetCode #1470](https://leetcode-cn.com/problems/shuffle-the-array/)
 
 > 题目描述: 给你一个数组 nums ，数组中有 2n 个元素，按 [x1,x2,...,xn,y1,y2,...,yn] 的格式排列。
 
@@ -97,7 +97,7 @@ class Solution:
 ----
 
 ## 题目02/03：删除中间节点
-日期: 2020-7-15 [LeetCode #0203](https://leetcode-cn.com/problems/delete-middle-node-lcci/)
+日期: 2020-7-21 [LeetCode #0203](https://leetcode-cn.com/problems/delete-middle-node-lcci/)
 
 > 题目描述: 实现一种算法，删除单向链表中间的某个节点（即不是第一个或最后一个节点），假定你只能访问该节点。
 
@@ -133,4 +133,32 @@ class Solution:
         node.next = node.next.next
 ```
 
+----
+## 题目771：宝石与石头
+日期: 2020-7-21 [LeetCode #771](https://leetcode-cn.com/problems/jewels-and-stones/)
+
+> 题目描述: 给定字符串J 代表石头中宝石的类型，和字符串 S代表你拥有的石头。 S 中每个字符代表了一种你拥有的石头的类型，你想知道你拥有的石头中有多少是宝石。J 中的字母不重复，J 和 S中的所有字符都是字母。字母区分大小写，因此"a"和"A"是不同类型的石头。
+
+```python
+class Solution:
+    def numJewelsInStones(self, J: str, S: str) -> int:
+        resultCount = 0
+        '''
+        for s in S:
+            for j in J:
+                if j == s:
+                    resultCount += 1
+        
+        for s in S:
+            if s in J:
+                resultCount += 1
+        '''
+        sCount = int(len(S))
+        for j in J:
+            S = S.replace(j,'')
+        sCount2 = int(len(S))
+        return sCount-sCount2
+```
+
+----
 
