@@ -64,4 +64,34 @@ public class TestAlgo {
 运行结果:
 ![运行结果](img/12-2.jpg)
 
+-----
+## 题目1470：重新排列数组
+日期: 2020-7-15 [LeetCode #1470](https://leetcode-cn.com/problems/shuffle-the-array/)
+
+> 题目描述: 给你一个数组 nums ，数组中有 2n 个元素，按 [x1,x2,...,xn,y1,y2,...,yn] 的格式排列。
+
+请你将数组按 [x1,y1,x2,y2,...,xn,yn] 格式重新排列，返回重排后的数组。
+
+
+示例 1：
+
+输入：nums = [2,5,1,3,4,7], n = 3
+输出：[2,3,5,4,1,7] 
+解释：由于 x1=2, x2=5, x3=1, y1=3, y2=4, y3=7 ，所以答案为 [2,3,5,4,1,7]
+
+### 题解：（Python）
+
+
+```python
+#思路: 很简单, 就是看中间len/2, 而且n都给了,直接遍历一遍,创建一个新的数组返回就可以
+class Solution:
+    def shuffle(self, nums: List[int], n: int) -> List[int]:
+        returnList = []
+        for i in range(n):
+            returnList.append(nums[i])
+            returnList.append(nums[i+n])
+        return returnList
+```
+
+
 
