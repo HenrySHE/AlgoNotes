@@ -94,4 +94,43 @@ class Solution:
 ```
 
 
+----
+
+## 题目02/03：删除中间节点
+日期: 2020-7-15 [LeetCode #0203](https://leetcode-cn.com/problems/delete-middle-node-lcci/)
+
+> 题目描述: 实现一种算法，删除单向链表中间的某个节点（即不是第一个或最后一个节点），假定你只能访问该节点。
+
+
+示例：
+
+输入：单向链表a->b->c->d->e->f中的节点c
+结果：不返回任何数据，但该链表变为a->b->d->e->f
+
+### 题解：（Python）
+
+
+```python
+'''
+思路: 很简单, 已经不用判断是否是末尾是否是开头了, 
+    1. 先看这个linked_list的数据结构和可以调用的方法
+    2. 然后替换掉当前的node值,变为他的下一个node的val(值被替换了)
+    3. 最后把那个指针指向原来的node的下一个(就是node.next.next)
+'''
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def deleteNode(self, node):
+        """
+        :type node: ListNode
+        :rtype: void Do not return anything, modify node in-place instead.
+        """
+        node.val = node.next.val
+        node.next = node.next.next
+```
+
 
