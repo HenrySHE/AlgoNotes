@@ -228,6 +228,7 @@ class Solution:
 输出：false
 解释：爱丽丝选择 1，鲍勃也选择 1，然后爱丽丝无法进行操作。
 
+
 ### 题解：（Python）
 
 > 解题思路: 这题很有意思，咋一看是要考虑是否是素数，看是否是奇数偶数。然后简单推算一下，发现，1的话，Alice没得选，A输；2的话，Bob没得选，A赢。 那么我们大胆猜测一下，只要A是奇数，那么她就输了，否则她就赢了。最后肯定要变成2，1的， 验证一下， 一直到5都是对的
@@ -237,3 +238,68 @@ class Solution:
     def divisorGame(self, N: int) -> bool:
         return( N%2==0 )
 ```
+
+## 题目392：判断子序列
+日期: 2020-7-27 [LeetCode #392[(https://leetcode-cn.com/problems/is-subsequence/)
+
+> 给定字符串 s 和 t ，判断 s 是否为 t 的子序列。
+>  
+> 你可以认为 s 和 t 中仅包含英文小写字母。字符串 t 可能会很长（长度 ~= 500,000），而 s 是个短字符串（长度 <=100）。
+> 
+> 字符串的一个子序列是原始字符串删除一些（也可以不删除）字符而不改变剩余字符相对位置形成的新字符串。（例如，"ace"是"abcde"的一个子序列，而"aec"不是）。
+
+示例 1:
+s = "abc", t = "ahbgdc"
+
+返回 true.
+
+示例 2:
+s = "axc", t = "ahbgdc"
+
+返回 false.
+
+
+解题思路: 比较简单, 就是有个j去定位s的index, 那么如果匹配到, 就j++, 知道等于len(s)的时候break出来;
+
+```python
+class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:
+        j = 0
+        for i in t:
+            if j == len(s):
+                break
+            if s[j] == i:
+                j += 1
+        return (j==len(s)) 
+```
+
+**后续挑战 :**
+
+如果有大量输入的 S，称作S1, S2, ... , Sk 其中 k >= 10亿，你需要依次检查它们是否为 T 的子序列。在这种情况下，你会怎样改变代码？
+
+动态规划题解(官方题解):
+```python
+class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:
+        n, m = len(s), len(t)
+        f = [[0] * 26 for _ in range(m)]
+        f.append([m] * 26)
+
+        for i in range(m - 1, -1, -1):
+            for j in range(26):
+                f[i][j] = i if ord(t[i]) == j + ord('a') else f[i + 1][j]
+        
+        add = 0
+        for i in range(n):
+            if f[add][ord(s[i]) - ord('a')] == m:
+                return False
+            add = f[add][ord(s[i]) - ord('a')] + 1
+        
+        return True
+
+```
+
+
+----------------------------
+所有题目来源：力扣（LeetCode）
+著作权归领扣网络所有。
